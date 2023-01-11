@@ -1,23 +1,26 @@
 package com.sansizbai;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
+import java.io.*;
+
 public class Main {
     public static void main(String[] args) {
-        try (Connection conn = DriverManager.getConnection(
-                "jdbc:postgresql://127.0.0.1:5432/mydb", "postgres", "asdfg")) {
+        PostgreDude pgGuy = new PostgreDude();
+        pgGuy.connectToDb("asdfg");
 
-            if (conn != null) {
-                System.out.println("Connected to the database!");
-            } else {
-                System.out.println("Failed to make connection!");
-            }
+        String query = null;
 
-        } catch (SQLException e) {
-            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
-        } catch (Exception e) {
-            e.printStackTrace();
+        try
+        {
+            InputStreamReader isr = new InputStreamReader(System.in);
+            BufferedReader br = new BufferedReader(isr);
+            query = br.readLine();
         }
+        catch (IOException ioe){
+            ioe.printStackTrace();
+        }
+
+        pgGuy.makeQuery(query);
+
 
     }
 }
