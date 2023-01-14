@@ -4,14 +4,12 @@ import java.sql.*;
 
 
 class PostgreDude {
-
     private Connection conn;
-
-
-    public void connectToDb (String password){
+    public PostgreDude (){
         try {
             String url = "jdbc:postgresql://127.0.0.1:5432/mydb";
             String user = "postgres";
+            String password ="asdfg";
             conn = DriverManager.getConnection(url, user, password);
 
             if (conn != null) {

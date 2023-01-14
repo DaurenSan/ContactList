@@ -4,8 +4,7 @@ import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
-        PostgreDude pgGuy = new PostgreDude();
-        pgGuy.connectToDb("asdfg");
+        PostgreDude pg = new PostgreDude();
 
         String query = null;
 
@@ -19,7 +18,7 @@ public class Main {
             ioe.printStackTrace();
         }
 
-        pgGuy.makeQuery(query);
+        pg.makeQuery(query);
 
 
     }
